@@ -96,8 +96,8 @@ public class Script
 A more extensive script of the mod "Random Worlds" from steam workshop: [C#](randomWorlds.cs), [JavaScript](randomWorlds.js).
 ## Helper functions
 
-The file [MapScriptHelper.cs](Map/Scripts/MapScriptHelper.cs) contains some helpful functions for creating map scripts.  
-The file [MapScriptAttribute.cs](Map/Scripts/MapScriptAttribute.cs) contains the possible attributes that can be applied to setting paramaters.  
+The file [MapScriptHelper.cs](MapConfiguratorCivilization7/Map/Script/MapScriptHelper.cs) contains some helpful functions for creating map scripts.  
+The file [MapScriptAttribute.cs](MapConfiguratorCivilization7/Map/Script/MapScriptAttribute.cs) contains the possible attributes that can be applied to setting paramaters.  
 For noise functions the class FastNoiseLite can be used.
 
 ## Setup and Debugging
