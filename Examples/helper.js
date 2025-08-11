@@ -3,6 +3,9 @@ import FastNoiseLite from '/randomWorlds/maps/FastNoiseLite.js';
 
 // Constants
 export const HEX_X_MUL = (2.0 / 3.0) * Math.sqrt(3.0);
+export const BIT_LAND = 1;
+export const BIT_OCEAN = 2;
+export const BIT_COAST = 4;
 
 export const lerp = (x, y, a) => x * (1 - a) + y * a;
 export const clamp = (a, min = 0, max = 1) => Math.min(max, Math.max(min, a));
@@ -108,6 +111,8 @@ export function invAttenuation(scale, x) {
     return 1.0 - scale / (scale + x);
 }
 
+
+// Returns the position of a hex tile with respect to the hex geometry
 export function posOfHex(hexPos) {
     return new Vector2(
         (hexPos.x + (hexPos.y % 2) * 0.5) * HEX_X_MUL,
@@ -115,6 +120,7 @@ export function posOfHex(hexPos) {
     );
 }
 
+// Returns the distance between two points where the world is wrapped at the x-axis with the specified width
 export function distanceBetweenPointsWrapped(pos1, pos2, width) {
     let yDif = Math.abs(pos1.y - pos2.y);
     let xDif = Math.abs(pos1.x - pos2.x);
@@ -122,6 +128,7 @@ export function distanceBetweenPointsWrapped(pos1, pos2, width) {
     return Math.hypot(xDif, yDif);
 }
 
+// Returns the direction from posStart to posEnd where the world is wrapped at the x-axis with the specified width
 export function getDirToPosWrapped(pos, posOther, width) {
     const dir1 = posOther.subtract(pos);
     const dir2 = posOther.add(new Vector2(width, 0)).subtract(pos);
@@ -136,6 +143,8 @@ export function getDirToPosWrapped(pos, posOther, width) {
     return dir3;
 }
 
+// Maps a 2D position into a 3D cylinder to connect the start and end of the x-axis together.
+// Useful in order to create seamless transitions for example with noise functions.
 export function map2dPosTo3dCylinder(pos, width) {
     const angle = (pos.x / width) * 2 * Math.PI;
     const posX = Math.sin(angle);
@@ -144,12 +153,14 @@ export function map2dPosTo3dCylinder(pos, width) {
     return new Vector3(posX, posY, posZ);
 }
 
+// Warps a position at the cylinder with the specified noise function and minimizes unwanted distortions by enforcing the result to also be on the cylinder.
 export function warpCylinder(warp, pos) {
     warp.DomainWarp(pos);  // Assume warp modifies pos in-place
     const posCenter = new Vector3(0, pos.y, 0);
     return posCenter.add(pos.subtract(posCenter).normalize());
 }
 
+// Shortcut to create noise function
 export function createNoise(seed, fractalType, frequency, lacunarity, gain, octaves = 4, noiseType = FastNoiseLite.NoiseType.OpenSimplex2S)
 {
     let noise = new FastNoiseLite(seed + 3);
@@ -162,6 +173,7 @@ export function createNoise(seed, fractalType, frequency, lacunarity, gain, octa
     return noise;
 }
 
+// Shortcut to create warp noise function
 export function createWarp(seed, fractalType, warpAmp, frequency, lacunarity, gain, octaves = 4, noiseType = FastNoiseLite.NoiseType.OpenSimplex2)
 {
     let noise = createNoise(seed, fractalType, frequency, lacunarity, gain, octaves, noiseType);
@@ -169,12 +181,14 @@ export function createWarp(seed, fractalType, warpAmp, frequency, lacunarity, ga
     return noise;
 }
 
+// Returns a random position in a uniform circle
 export function randomPointInCircle(random) {
     const r = Math.sqrt(random.nextFloat());
     const angle = random.nextFloat() * 2 * Math.PI;
     return Vector2.fromPolar(r, angle);
 }
 
+// Returns the valid neighboring hex tile index positions including wrapping at the x-axis
 export function getHexNeighbors(x, y, data) {
     const isOdd = y % 2;
     const neighbors = [];
@@ -192,6 +206,12 @@ export function getHexNeighbors(x, y, data) {
     return neighbors;
 }
 
+// Computes distance fields to land where negative values are inland.
+// Useful to for example place islands at a safe distance from main continents or ensuring that coastal spread does not connect home with distant lands.
+// The result is stored in DF, where the second dimension is for the following:
+// Index 0: Distance fields to islands
+// Index 1: Distance fields to main home lands
+// Index 2: Distance fields to main distant lands
 export function computeDistanceFields(data, DF, maxIter) {
     const W = data.width;
     const H = data.height;
@@ -264,6 +284,11 @@ export function computeDistanceFields(data, DF, maxIter) {
     }
 }
 
+// Computes the amount of reachable tiles for every tile.
+// Useful to for example check how much land can be reached from every location or how large a water region is.
+// "typeMaskCount" is a bitmask to control which tiles should be counted.
+// "typeMaskExpand" is a bitmask to control which tiles can be used to expand regions.
+// Use BIT_LAND, BIT_OCEAN and BIT_COAST to create a bitmask
 export function computeConnectedCounts(data, typeMaskCount, typeMaskExpand) {
     const W = data.width;
     const H = data.height;

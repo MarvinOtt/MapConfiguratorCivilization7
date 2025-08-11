@@ -3,7 +3,6 @@
  * @packageDocumentation
  */
 console.log("Generating using script randomWorlds.js");
-//import { assignStartPositions, chooseStartSectors } from '/randomContinents/maps/starting.js';
 import { addMountains, addHills, buildRainfallMap, generateLakes } from '/base-standard/maps/elevation-terrain-generator.js';
 import { designateBiomes } from '/base-standard/maps/feature-biome-generator.js';
 import * as globals from '/base-standard/maps/map-globals.js';
