@@ -89,16 +89,26 @@ public class Script
             token.ThrowIfCancellationRequested();
         }
 
+        // Syncs the tile data with the preview
         script.UpdateMapCallback();
     }
 }
 ```
-A more extensive script of the mod "Random Worlds" from steam workshop: [C#](randomWorlds.cs), [JavaScript](randomWorlds.js).
-## Helper functions
+A more extensive script of the mod "Random Worlds" from steam workshop: [C#](Examples/randomWorlds.cs), [JavaScript](Examples/randomWorlds.js).
+## Helper classes and functions
 
+### C#
+The file [MapScriptData.cs](MapConfiguratorCivilization7/Map/Script/MapScriptData.cs) contains the tile data for a script. Needed as an interface to the tool.  
 The file [MapScriptHelper.cs](MapConfiguratorCivilization7/Map/Script/MapScriptHelper.cs) contains some helpful functions for creating map scripts.  
 The file [MapScriptAttribute.cs](MapConfiguratorCivilization7/Map/Script/MapScriptAttribute.cs) contains the possible attributes that can be applied to setting paramaters.  
-For noise functions the class FastNoiseLite can be used.
+The file [FastNoiseLite.cs](MapConfiguratorCivilization7/Common/FastNoiseLite.cs) contains the noise library.  
+The file [XoShiRo128plus.cs](MapConfiguratorCivilization7/Common/XoShiRo128plus.cs) contains the random number generator.
+
+### JavaScript
+The file [mapData.js](Examples/mapData.js) contains the tile data as with the C# version. Recommended to use in order to keep the code similar to the C# version.  
+The file [helper.js](Examples/helper.js) contains some helpful functions for creating map scripts. It is the same as the C# version.  
+The file [FastNoiseLite.js](Examples/FastNoiseLite.js) contains the noise library which is the same as the C# version.  
+The file [xoShiRo128plus.js](Examples/xoShiRo128plus.js) contains the random number generator which is the same as the C# version.
 
 ## Setup and Debugging
 
