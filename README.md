@@ -6,6 +6,8 @@ This tool allows for configuring compatible map scripts. It shows the result in 
 As an example the amount of land, islands and mountains could be changeable.  
 Configs can be created to save wanted configurations. The changes can be applied while the game is running.
 
+![Example of the tool](ConfiguratorExampleImage.png)
+
 ## Making a custom script
 
 Guide for [creating a map script](MODDING.md).
