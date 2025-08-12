@@ -3,6 +3,7 @@
  * @packageDocumentation
  */
 console.log("Generating using script randomWorlds.js");
+//import { assignStartPositions, chooseStartSectors } from '/randomContinents/maps/starting.js';
 import { addMountains, addHills, buildRainfallMap, generateLakes } from '/base-standard/maps/elevation-terrain-generator.js';
 import { designateBiomes } from '/base-standard/maps/feature-biome-generator.js';
 import * as globals from '/base-standard/maps/map-globals.js';
@@ -857,7 +858,7 @@ function computeBiomes(data, random, mountainMap, rainfallMap, worldAspectRatio)
             const grasslandNoiseValue = noiseGrassland.GetNoise(curPosWrapped.x, curPosWrapped.y, curPosWrapped.z);
             const desertLatitudeFac = Math.pow(Math.max(0.4, (1.0 / 0.125) * ((0.15 - Math.abs(0.15 - Math.abs((0.5 + desertNoiseValue * 0.5) - curPos.y))) - 0.025)), 0.5);
 
-            const plains = SETTINGS.plainsMul * 0.76 * Helper.lerp(1, 1.0 - mountain, 0.7) * (1.0 - Math.abs(0.5 - rainfallMap[index])) * Math.max(0, 1.0 - Math.abs(0.85 - temp) * 1.25);
+            const plains = SETTINGS.plainsMul * 0.71 * Helper.lerp(1, 1.0 - mountain, 0.7) * (1.0 - Math.abs(0.5 - rainfallMap[index])) * Math.max(0, 1.0 - Math.abs(0.85 - temp) * 1.25);
             const desert = SETTINGS.desertMul * 1.2 * (1.0 - rainfallMap[index] * 0.8) * Helper.lerp(1, temp, 0.5) * Helper.lerp(1, desertLatitudeFac, 0.8);
             const grassland = SETTINGS.grasslandMul * 0.29 * Math.max(0.25, 1.0 + grasslandNoiseValue * 1.5) * Helper.lerp(1, 1.0 - mountain, 0.4) * Helper.lerp(1, temp, 0.5);
             const tundra = SETTINGS.tundraMul * 1.12 * Helper.lerp(1, mountain, 0.25) * Math.max(0.25, 1.0 - temp * 1.5) * Math.max(0.2, 1.0 - Math.abs(0.25 - rainfallMap[index]) * 1.5);

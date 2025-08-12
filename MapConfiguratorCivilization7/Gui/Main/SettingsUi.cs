@@ -60,10 +60,13 @@ namespace MapConfiguratorCivilization7.Gui
                     if (ImGui.ColorEdit3(biomeNames[i], ref color))
                     {
                         Settings.data.biomeColors[i] = color;
-                        // Optionally: Trigger ApplyChanges() or mark dirty
                     }
                 }
             }
+
+            ImGui.Spacing();
+            ImGui.Separator();
+            ImGui.Spacing();
 
             if (ImGui.Button("Save"))
                 Settings.Save();

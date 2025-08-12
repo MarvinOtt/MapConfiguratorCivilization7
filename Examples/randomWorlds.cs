@@ -714,7 +714,6 @@ public class Script
                     minDistThreshhold = Math.Max(minDistThreshhold, 0.02f);
                     continue;
                 }
-                Console.WriteLine(tries + " | " + minDistThreshhold);
                 break;
             }
             else if (tries > 3000)
