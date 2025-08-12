@@ -4,11 +4,11 @@
 
 ## Features
 
-This tool allows for configuring compatible map scripts. It shows the result in a rendered preview, updating when changes are made.
-As an example the amount of land, islands and mountains could be changeable.  
-Configs can be created to save wanted configurations. The changes can be applied while the game is running.
+This tool allows for configuring compatible map scripts. It shows the result of some seed in a rendered preview, updating when changes are made.
+For example, the amount of land, islands, and mountains can be changed.  
+Configurations can be saved and loaded. All changes can be applied without restarting Civ 7.
 
- :warning: Currently only Windows is supported.
+ :warning: Currently, only Windows is supported.
 
 ## Making a custom script
 
