@@ -85,7 +85,7 @@ namespace MapConfiguratorCivilization7
             var pathSettingsRoot = Path.GetFullPath(Path.Combine(script.scriptPath, @"..\..\..\"));
             if (!Directory.Exists(pathSettingsRoot))
                 return;
-            var pathSettingsSettings = Path.Combine(pathSettingsRoot, "modules", "settings");
+            var pathSettingsSettings = Path.Combine(pathSettingsRoot, "settings");
             if (!Directory.Exists(pathSettingsSettings))
                 Directory.CreateDirectory(pathSettingsSettings);
             File.WriteAllText(Path.Combine(pathSettingsSettings, script.name + ".js"), jsCode);

@@ -41,7 +41,7 @@ namespace MapConfiguratorCivilization7
 
                 foreach (var modFolder in Directory.GetDirectories(workshopModsPath))
                 {
-                    string scriptPath = Path.Combine(modFolder, "mapConfigurator", "scripts");
+                    string scriptPath = Path.Combine(modFolder, "modules", "mapConfigurator", "scripts");
 
                     if (Directory.Exists(scriptPath))
                     {
