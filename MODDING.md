@@ -1,9 +1,8 @@
 # Making a custom script
 
-A mod can have multiple scripts, where each one needs two versions: One written in C# for this tool and the other one in JavaScript for the game.
-When the settings from the tool are applied the parameters are written into a JavaScript settings file.
-This can then simply be imported from the game script.  
-The C# script does not have to match the JavaScript version in all features. For example the C# version could only compute the main continents and allow changing their size. 
+A mod can have multiple scripts, each of which needs two versions: one written in C# for this tool and the other in JavaScript for the Civilization.
+When the tool's settings are applied, the parameters are written into a JavaScript settings file to be imported from the game script.
+The C# script does not have to match the JavaScript version in all features. For example, the C# version could only compute the main continents and allow for the size to be changed. 
 
 If a Civilization VII mod has the script and setting files as below, the tool recognises all present scripts.  
 Required file structure (Example with mod "mapScript" together with the two map scripts "randomWorlds" and "chaoticContinents"):
@@ -27,8 +26,8 @@ mapScript/
         └── chaoticContinents.js
 </pre>
 
-The scripts for the game under "modules/maps" can also be located differently as long as the scripts can load the corresponding setting files.  
-The files under "modules/settings" correspond to the settings for each script. This tool overwrite it automatically, but for the initial version, the strucure is as follows:  
+The scripts for the game under "modules/maps" can also be located elsewhere, as long as the scripts can load the corresponding setting files.  
+The files under "modules/settings" correspond to the settings for each script. This tool should overwrite it automatically, but for the initial version, the structure is as follows:  
 
 ```js
 export const SETTINGS = {
@@ -94,25 +93,25 @@ public class Script
     }
 }
 ```
-A more extensive script of the mod "Random Worlds" from steam workshop: [C#](Examples/randomWorlds.cs), [JavaScript](Examples/randomWorlds.js).
+A more extensive script of the mod "Random Worlds" from the Steam Workshop can be found here: [C#](Examples/randomWorlds.cs), [JavaScript](Examples/randomWorlds.js).
 ## Helper classes and functions
 
 ### C#
-The file [MapScriptData.cs](MapConfiguratorCivilization7/Map/Script/MapScriptData.cs) contains the tile data for a script. Needed as an interface to the tool.  
-The file [MapScriptHelper.cs](MapConfiguratorCivilization7/Map/Script/MapScriptHelper.cs) contains some helpful functions for creating map scripts.  
-The file [MapScriptAttribute.cs](MapConfiguratorCivilization7/Map/Script/MapScriptAttribute.cs) contains the possible attributes that can be applied to setting paramaters.  
-The file [FastNoiseLite.cs](MapConfiguratorCivilization7/Common/FastNoiseLite.cs) contains the noise library.  
-The file [XoShiRo128plus.cs](MapConfiguratorCivilization7/Common/XoShiRo128plus.cs) contains the random number generator.
+[MapScriptData.cs](MapConfiguratorCivilization7/Map/Script/MapScriptData.cs) contains the script's tile data. It is needed as an interface to the tool.  
+[MapScriptHelper.cs](MapConfiguratorCivilization7/Map/Script/MapScriptHelper.cs) contains some helpful functions for creating map scripts.  
+[MapScriptAttribute.cs](MapConfiguratorCivilization7/Map/Script/MapScriptAttribute.cs) contains the possible attributes that can be applied to setting parameters.  
+[FastNoiseLite.cs](MapConfiguratorCivilization7/Common/FastNoiseLite.cs) contains the noise library.  
+[XoShiRo128plus.cs](MapConfiguratorCivilization7/Common/XoShiRo128plus.cs) contains the random number generator.
 
 ### JavaScript
-The file [mapData.js](Examples/mapData.js) contains the tile data as with the C# version. Recommended to use in order to keep the code similar to the C# version.  
-The file [helper.js](Examples/helper.js) contains some helpful functions for creating map scripts. It is the same as the C# version.  
-The file [FastNoiseLite.js](Examples/FastNoiseLite.js) contains the noise library which is the same as the C# version.  
-The file [xoShiRo128plus.js](Examples/xoShiRo128plus.js) contains the random number generator which is the same as the C# version.
+[mapData.js](Examples/mapData.js) contains the tile data as with the C# version. It is recommended to use it to keep the code similar to the C# version.  
+[helper.js](Examples/helper.js) contains some helpful functions for creating map scripts. It is the same as the C# version.  
+[FastNoiseLite.js](Examples/FastNoiseLite.js) contains the noise library, which is the same as the C# version.  
+[xoShiRo128plus.js](Examples/xoShiRo128plus.js) contains the random number generator, which is the same as the C# version.
 
 ## Setup and Debugging
 
-Create the required file strucuture and place the files in a temporary mod folder under "steamapps/workshop/1295660/<anyID>". This path is under the steam library where Civilization VII is installed.
-This has to be done as the tool looks for scripts in steam workshop mods. For starting only a C# script is needed.  
-In order to easily find errors it is recommended to setup this project locally and add the wanted C# script files to the project as a link to catch compilation errors.
+Create the required file structure and place the files in a temporary mod folder under "steamapps/workshop/1295660/<anyID>". This path is under the Steam library where Civilization VII is installed.
+This has to be done as the tool looks for scripts in Steam Workshop mods. To start, only a C# script is needed.  
+To find errors easily, it is recommended that you set up this project locally and add the desired C# script files to the project as a link to catch compilation errors.
 The JavaScript version should match the C# version as close as possible. Enable map script logging for the game and use console.log() for easier debugging.
