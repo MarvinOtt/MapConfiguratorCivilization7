@@ -9,15 +9,15 @@ Required file structure (Example with mod "mapScript" together with the two map 
 
 <pre>
 mapScript/
-├── mapConfigurator/
-│   └── scripts/
-│       ├── randomWorlds\
-│       │   ├── script.cs
-│       │   └── extraConfig1.json
-│       └── chaoticContinents\
-│           ├── script.cs
-│           └── extraConfig2.json
 └── modules/
+    ├── mapConfigurator/
+    │   └── scripts/
+    │       ├── randomWorlds\
+    │       │   ├── script.cs
+    │       │   └── extraConfig1.json
+    │       └── chaoticContinents\
+    │           ├── script.cs
+    │           └── extraConfig2.json
     ├── maps\
     │   ├── randomWorlds.js
     │   └── chaoticContinents.js
