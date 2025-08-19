@@ -16,7 +16,7 @@
     <None Remove="iconApp.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="E:\SteamLibrary\steamapps\workshop\content\1295660\3507571634\modules\mapConfigurator\scripts\randomWorlds\script.cs" Link="external\scripts\script.cs" />
+    <Compile Include="E:\SteamLibrary\steamapps\workshop\content\1295660\3547738229\mapConfigurator\scripts\randomWorlds\script.cs" Link="external\scripts\script.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconApp.ico" />
