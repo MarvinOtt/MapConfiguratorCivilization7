@@ -13,9 +13,9 @@ namespace MapConfiguratorCivilization7.Gui
                 return;
 
 
-            ImGui.SetNextWindowPos(new Vector2(App.ScreenWidth, 0), ImGuiCond.Always, new Vector2(1, 0));
-            ImGui.SetNextWindowSize(Vector2.Zero);
-            ImGui.SetNextWindowSizeConstraints(new Vector2(150, 0), new Vector2(400, 400));
+            ImGui.SetNextWindowPos(new System.Numerics.Vector2(App.ScreenWidth, 0), ImGuiCond.Always, new System.Numerics.Vector2(1, 0));
+            ImGui.SetNextWindowSize(System.Numerics.Vector2.Zero);
+            ImGui.SetNextWindowSizeConstraints(new System.Numerics.Vector2(150, 0), new System.Numerics.Vector2(400, 400));
             if (ImGui.Begin("MapPreviewSettings", ref isOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar))
             {
                 ImGui.Text("Seed");
@@ -33,7 +33,7 @@ namespace MapConfiguratorCivilization7.Gui
                 ImGui.Spacing();
 
                 ImGui.Text("Map Size");
-                float contentWidth = ImGui.GetWindowContentRegionWidth();
+                float contentWidth = ImGui.GetContentRegionAvail().X;
                 ImGui.SetNextItemWidth(contentWidth - ImGuiStyleConfig.style.FramePadding.Y * 2);
                 if (ImGui.BeginCombo("##MapSize", Map.mapSizes[App.map.selectedMapSizeIndex].name))
                 {

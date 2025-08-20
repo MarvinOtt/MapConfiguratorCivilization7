@@ -21,7 +21,7 @@ namespace MapConfiguratorCivilization7.Gui
                     App.map.scriptHandler.Initialize();
             }
             ImGuiCommon.HelperIcon("Path to the steam library where Civilization VII is installed.\nPressing \"Auto\" tries to find it automatically", 500);
-            ImGui.SetNextItemWidth(ImGui.GetWindowContentRegionWidth());
+            ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
             if (ImGui.InputText("##Civ7LibraryLocation", ref Settings.data.pathToSteamLibraryWithCiv7, 1000))
             {
                 App.map.scriptHandler.Initialize();
@@ -55,7 +55,7 @@ namespace MapConfiguratorCivilization7.Gui
                 var biomeNames = Enum.GetNames(typeof(MapTileBiome));
                 for (int i = 0; i < Settings.data.biomeColors.Length && i < biomeNames.Length; i++)
                 {
-                    Vector3 color = Settings.data.biomeColors[i];
+                    System.Numerics.Vector3 color = Settings.data.biomeColors[i].ToNumerics();
                     Vector3 original = color; // For change detection
                     if (ImGui.ColorEdit3(biomeNames[i], ref color))
                     {
@@ -70,8 +70,6 @@ namespace MapConfiguratorCivilization7.Gui
 
             if (ImGui.Button("Save"))
                 Settings.Save();
-
-            ImGui.End();
         }
     }
 }

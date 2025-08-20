@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -15,7 +16,7 @@ namespace MapConfiguratorCivilization7
 {
     public class SettingData
     {
-        public string pathToSteamLibraryWithCiv7 = null;
+        public string pathToSteamLibraryWithCiv7 = "";
         public bool showDebug = false;
         public Vector3[] biomeColors = new Vector3[]
         {
@@ -63,14 +64,7 @@ namespace MapConfiguratorCivilization7
 
         public static bool FindSteamLibraryLocation()
         {
-            string regPath = @"Software\Wow6432Node\Valve\Steam";
-
-            string steamInstallPath = null;
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regPath))
-            {
-                steamInstallPath = key?.GetValue("InstallPath") as string;
-            }
-
+            string steamInstallPath = GetSteamInstallPath();
             if (steamInstallPath == null)
                 return false;
 
@@ -105,5 +99,51 @@ namespace MapConfiguratorCivilization7
 
             return true;
         }
+
+        private static string GetSteamInstallPath()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                // Windows: registry
+                try
+                {
+                    using (var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"Software\Wow6432Node\Valve\Steam"))
+                    {
+                        return key?.GetValue("InstallPath") as string;
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                // Linux: usually ~/.steam/steam or ~/.local/share/Steam
+                string home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string[] candidates = [
+                    Path.Combine(home, ".steam/steam"),
+                    Path.Combine(home, ".local/share/Steam")
+                ];
+
+                foreach (var c in candidates)
+                {
+                    if (Directory.Exists(c))
+                        return c;
+                }
+
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                // macOS: ~/Library/Application Support/Steam
+                string home = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string path = Path.Combine(home, "Library/Application Support/Steam");
+                if (Directory.Exists(path))
+                    return path;
+            }
+
+            return null;
+        }
+
     }
 }

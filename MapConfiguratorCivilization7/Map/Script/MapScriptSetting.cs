@@ -237,7 +237,7 @@ namespace MapConfiguratorCivilization7
                     ImGui.Spacing();
                     ImGui.Text(checkboxAttr.Name);
                     if (description != null) ImGuiCommon.HelperIcon(description, 500);
-                    if (ImGui.ImageButton(iconsUiImGui.ID, new Vector2(itemHeightImGui)))
+                    if (ImGui.ImageButton("reset", iconsUiImGui.ID, new System.Numerics.Vector2(itemHeightImGui)))
                     {
                         field.SetValue(workingInstance, defaultValue);
                         anyChanged = true;
@@ -256,7 +256,7 @@ namespace MapConfiguratorCivilization7
                     ImGui.Spacing();
                     ImGui.Text(sliderIntAttr.Name);
                     if (description != null) ImGuiCommon.HelperIcon(description, 500);
-                    if (ImGui.ImageButton(iconsUiImGui.ID, new Vector2(itemHeightImGui)))
+                    if (ImGui.ImageButton("reset", iconsUiImGui.ID, new System.Numerics.Vector2(itemHeightImGui)))
                     {
                         field.SetValue(workingInstance, defaultValue);
                         anyChanged = true;
@@ -277,7 +277,7 @@ namespace MapConfiguratorCivilization7
                     ImGui.Text(sliderFloatAttr.Name);
                     if (description != null) ImGuiCommon.HelperIcon(description, 500);
                     ImGui.PushID("##reset" + field.Name);
-                    if (ImGui.ImageButton(iconsUiImGui.ID, new Vector2(itemHeightImGui)))
+                    if (ImGui.ImageButton("reset", iconsUiImGui.ID, new System.Numerics.Vector2(itemHeightImGui)))
                     {
                         field.SetValue(workingInstance, defaultValue);
                         anyChanged = true;
@@ -301,7 +301,7 @@ namespace MapConfiguratorCivilization7
                     ImGui.Spacing();
                     ImGui.Text(dropdown.Name);
                     if (description != null) ImGuiCommon.HelperIcon(description, 500);
-                    if (ImGui.ImageButton(iconsUiImGui.ID, new Vector2(itemHeightImGui)))
+                    if (ImGui.ImageButton("reset", iconsUiImGui.ID, new System.Numerics.Vector2(itemHeightImGui)))
                     {
                         field.SetValue(workingInstance, defaultValue);
                         anyChanged = true;

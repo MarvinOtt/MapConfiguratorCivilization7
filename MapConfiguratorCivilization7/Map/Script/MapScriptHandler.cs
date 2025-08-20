@@ -25,6 +25,12 @@ namespace MapConfiguratorCivilization7
 
         public bool Initialize()
         {
+            if (string.IsNullOrEmpty(Settings.data.pathToSteamLibraryWithCiv7))
+            {
+                Console.WriteLine("The steam library path to civilization 7 is not set, try to set it manually in settings!");
+                return false;
+            }
+
             try
             {
                 string workshopModsPath = Path.Combine(Settings.data.pathToSteamLibraryWithCiv7, @"steamapps\workshop\content\1295660"); // Civ 7 AppID = 1295660

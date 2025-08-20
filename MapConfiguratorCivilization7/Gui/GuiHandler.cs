@@ -15,7 +15,7 @@ namespace MapConfiguratorCivilization7
         public static ImGuiRenderer GuiRenderer;
         private App app;
 
-        private string[] tabs = ["Scripts", "Settings"];
+        private string[] tabs = new string[] { "Scripts", "Settings" };
 
         public GuiHandler(App app)
         {
@@ -40,16 +40,16 @@ namespace MapConfiguratorCivilization7
 
         public void BeginDraw(GameTime gameTime)
         {
-            GuiRenderer.BeforeLayout(gameTime, app.IsActive);
+            GuiRenderer.BeforeLayout(gameTime);
         }
 
         public void Draw()
         {
             if (ShowUi)
             {
-                ImGui.SetNextWindowPos(new Vector2(0, 0), ImGuiCond.Always);
-                ImGui.SetNextWindowSize(new Vector2(280, App.ScreenHeight), ImGuiCond.Appearing);
-                ImGui.SetNextWindowSizeConstraints(new Vector2(200, App.ScreenHeight), new Vector2(10000, App.ScreenHeight));
+                ImGui.SetNextWindowPos(new System.Numerics.Vector2(0, 0), ImGuiCond.Always);
+                ImGui.SetNextWindowSize(new System.Numerics.Vector2(280, App.ScreenHeight), ImGuiCond.Appearing);
+                ImGui.SetNextWindowSizeConstraints(new System.Numerics.Vector2(200, App.ScreenHeight), new System.Numerics.Vector2(10000, App.ScreenHeight));
                 if (ImGui.Begin("Map Settings", ImGuiWindowFlags.NoTitleBar))
                 {
                     if (ImGui.BeginTabBar("MapSettingBar"))
@@ -67,7 +67,6 @@ namespace MapConfiguratorCivilization7
                                 ImGui.EndTabItem();
                             }
                         }
-
                         ImGui.EndTabBar();
                     }
                     panelWidth = ImGui.GetWindowWidth();
