@@ -17,16 +17,15 @@ mapScript/
 │       └── chaoticContinents\
 │           ├── script.cs
 │           └── extraConfig2.json
-└── modules/
-    ├── maps\
-    │   ├── randomWorlds.js
-    │   └── chaoticContinents.js
-    └── settings/
-        ├── randomWorlds.js
-        └── chaoticContinents.js
+├── maps\
+│   ├── randomWorlds.js
+│   └── chaoticContinents.js
+└── settings/
+    ├── randomWorlds.js
+    └── chaoticContinents.js
 </pre>
 
-The scripts for the game under "modules/maps" can also be located elsewhere, as long as the scripts can load the corresponding setting files.  
+The scripts for the game under "maps" can also be located elsewhere, as long as the scripts can load the corresponding setting files.  
 The files under "modules/settings" correspond to the settings for each script. This tool should overwrite it automatically, but for the initial version, the structure is as follows:  
 
 ```js
