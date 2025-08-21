@@ -36,7 +36,7 @@ namespace MapConfiguratorCivilization7.Gui
             ImGuiCommon.HelperIcon("Determines the quality of the map render.\nEspecially noticeable when zooming out", 500);
             if (ImGui.BeginCombo("##SuperSampling", Settings.data.superSamplingCount.ToString()))
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     int superSampling = (int)Math.Pow(2, i); 
                     bool isSelected = superSampling == Settings.data.superSamplingCount;

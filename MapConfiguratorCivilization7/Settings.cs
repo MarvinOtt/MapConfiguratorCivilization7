@@ -53,6 +53,9 @@ namespace MapConfiguratorCivilization7
             if (File.Exists("settings.json"))
                 data = SettingData.fromJson(File.ReadAllText("settings.json"));
 
+            if (data.superSamplingCount > 4)
+                data.superSamplingCount = 4;
+
             if (string.IsNullOrEmpty(data.pathToSteamLibraryWithCiv7))
                 FindSteamLibraryLocation();
         }

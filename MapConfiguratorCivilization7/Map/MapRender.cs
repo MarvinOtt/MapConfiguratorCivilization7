@@ -13,7 +13,7 @@ namespace MapConfiguratorCivilization7
 
         private Map map;
         Vector2 mapPos = Vector2.Zero;
-        float mapZoom = 10;
+        float mapZoom = 8;
 
         readonly float SQRT3HALF = (float)Math.Sqrt(3.0f) / 2.0f;
 
@@ -75,12 +75,13 @@ namespace MapConfiguratorCivilization7
             mapPreview.Parameters["mapSampler+mapDebug"]?.SetValue(map.mapData.debugGpu);
             mapPreview.Parameters["biomeColors"]?.SetValue(Settings.data.biomeColors);
             mapPreview.Parameters["iconSampler+icons"]?.SetValue(icons);
-            mapPreview.Parameters["wrapMap"].SetValue(wrapMap);
+            mapPreview.Parameters["wrapMap"]?.SetValue(wrapMap);
             mapPreview.Parameters["renderDebug"]?.SetValue(renderDebug);
             mapPreview.Parameters["showMapBorder"]?.SetValue(showMapBorder);
-            mapPreview.Parameters["showHexBorder"].SetValue(showHexBorder);
-            mapPreview.Parameters["hexBorderSize"].SetValue(0.08f);
-            mapPreview.Parameters["superSamplingCount"].SetValue(Settings.data.superSamplingCount);
+            mapPreview.Parameters["showHexBorder"]?.SetValue(showHexBorder);
+            mapPreview.Parameters["hexBorderSize"]?.SetValue(0.08f);
+            mapPreview.Parameters["superSamplingCount"]?.SetValue(Settings.data.superSamplingCount);
+
 
             mapPreview.CurrentTechnique.Passes[0].Apply();
 

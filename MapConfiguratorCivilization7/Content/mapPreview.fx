@@ -222,10 +222,10 @@ float4 MainPS(VertexShaderOutput input) : SV_Target
     float2 pixelPos = input.Position.xy;
     float4 finalCol = float4(0, 0, 0, 0);
     float distBetweenSamples = 1.0f / superSamplingCount;
-    [loop]
+    [unroll(4)]
     for (int x = 0; x < superSamplingCount; ++x)
     {
-        [loop]
+        [unroll(4)]
         for (int y = 0; y < superSamplingCount; ++y)
         {
             finalCol += renderMap(pixelPos + distBetweenSamples * 0.5f + float2(x * distBetweenSamples, y * distBetweenSamples));
